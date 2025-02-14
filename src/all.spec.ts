@@ -14,11 +14,15 @@ import server from './server';
 describe('Models', () => {
   let user;
   let session;
-  let geoLibStub: Partial<typeof GeoLib> = {};
+  const geoLibStub: Partial<typeof GeoLib> = {};
 
   before(async () => {
-    geoLibStub.getAddressFromCoordinates = sinon.stub(GeoLib, 'getAddressFromCoordinates').resolves(faker.location.streetAddress({ useFullAddress: true }));
-    geoLibStub.getCoordinatesFromAddress = sinon.stub(GeoLib, 'getCoordinatesFromAddress').resolves({ lat: faker.location.latitude(), lng: faker.location.longitude() });
+    geoLibStub.getAddressFromCoordinates = sinon
+      .stub(GeoLib, 'getAddressFromCoordinates')
+      .resolves(faker.location.streetAddress({ useFullAddress: true }));
+    geoLibStub.getCoordinatesFromAddress = sinon
+      .stub(GeoLib, 'getCoordinatesFromAddress')
+      .resolves({ lat: faker.location.latitude(), lng: faker.location.longitude() });
 
     session = await mongoose.startSession();
     user = await UserModel.create({
@@ -51,7 +55,7 @@ describe('Models', () => {
     it('should create a region', async () => {
       const regionData: Omit<Region, '_id'> = {
         user: user._id,
-        name: faker.person.fullName()
+        name: faker.person.fullName(),
       };
 
       const [region] = await RegionModel.create([regionData]);
@@ -66,7 +70,10 @@ describe('Models', () => {
 
         assert.fail('Should have thrown an error');
       } catch (error) {
-        const updatedUserRecord = await UserModel.findOne({ _id: user._id }).select('regions').lean();
+        console.log('error', error)
+        const updatedUserRecord = await UserModel.findOne({ _id: user._id })
+          .select('regions')
+          .lean();
 
         expect(userRecord).to.deep.eq(updatedUserRecord);
       }
