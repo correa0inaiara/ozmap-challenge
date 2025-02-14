@@ -1,6 +1,7 @@
 import * as app from 'express';
 import init from './database';
-import { router } from './routes';
+import { userRouter } from './routes/userRoutes';
+import { regionRouter } from './routes/regionRoutes';
 import * as bodyParser from 'body-parser';
 
 const PORT = 3003;
@@ -13,7 +14,8 @@ export default async function main() {
   
   // console.log(server)
   server.use(bodyParser.json())
-  server.use('/', router);
+  server.use('/users', userRouter);
+  server.use('/regions', regionRouter);
   server.listen(PORT, () => {
     console.log('listining on port 3003');
   });
