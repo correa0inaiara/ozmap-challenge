@@ -19,6 +19,11 @@ export default [
       globals: globals.browser 
     } 
   },
+  {
+    rules: {
+      "@typescript-eslint/no-this-alias": ["error", { "allowedNames": ["self"] } ]
+    }
+  },
   // {
   //   rules: {
   //     "allowAsImport": ["error", true]

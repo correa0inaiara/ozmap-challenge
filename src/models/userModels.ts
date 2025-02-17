@@ -6,31 +6,34 @@ import { pre, getModelForClass, prop, Ref, modelOptions } from '@typegoose/typeg
 import { Region } from './regionModels';
 
 import ObjectId = mongoose.Types.ObjectId;
+import { isUserValid } from '../validations/userValidations';
 
-@modelOptions({ schemaOptions: { validateBeforeSave: true } })
+
+@pre<User>('validate', async function (next) {
+  const {address, coordinates} = this
+
+  isUserValid.call(this, address, coordinates)
+
+  next()
+})
 
 class Base extends TimeStamps {
   @prop({ required: true, default: () => new ObjectId().toString() })
   _id: string;
 }
 
-@pre<User>('save', async function (next) {
-  console.log('user save')
-
-  next();
-})
-
+@modelOptions({ schemaOptions: { validateBeforeSave: true } })
 export class User extends Base {
-  @prop({ required: true })
+  @prop({ required: true, type: () => [String], match: /^([a-zA-Z ])*$/})
   public name!: string;
 
-  @prop({ required: true })
+  @prop({ required: true, match: /^([a-zA-Z.0-9])*@{1}([a-zA-Z.0-9])*.{1}([a-zA-Z])*$/ })
   public email!: string;
 
-  @prop({ required: false, default: '', type: () => [String] })
+  @prop({ type: () => [String] })
   public address: string;
 
-  @prop({ required: true, default: [], type: () => [Number] })
+  @prop({ type: () => [Number] })
   public coordinates: mongoose.Types.Array<number>;
 
   @prop({ required: true, default: [], ref: () => Region, type: () => String })

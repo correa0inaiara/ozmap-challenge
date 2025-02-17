@@ -15,20 +15,26 @@ class Base extends TimeStamps {
 }
 
 @pre<Region>('save', async function (next) {
-  const region = this as Omit<any, keyof Region> & Region;
+  // const region = this as Omit<any, keyof Region> & Region;
 
-  if (!region._id) {
-    region._id = new ObjectId().toString();
-  }
+  // if (!region._id) {
+  //   region._id = new ObjectId().toString();
+  // }
 
-  if (region.isNew) {
-    const user = await UserModel.findOne({ _id: region.user });
-    user.regions.push(region._id);
-    await user.save({ session: region.$session() });
-  }
+  // if (region.isNew && region.user) {
+  //   const user = await UserModel.findOne({ _id: region!.user });
+  //   user.regions.push(region._id);
+  //   await user.save({ session: region.$session() });
+  // }
 
-  next(region.validateSync());
+  // next(region.validateSync());
+  next()
 })
+
+class Nested {
+  @prop()
+  public nestProp: User | string
+}
 
 export class Region extends Base {
   @prop({ required: true, auto: true })
@@ -37,8 +43,8 @@ export class Region extends Base {
   @prop({ required: true })
   name!: string;
 
-  @prop({ ref: () => User, required: true, type: () => String })
-  user: Ref<User>;
+  @prop({ ref: () => Nested, type: () => String })
+  user!: Ref<Nested, string>;
 }
 
 export const RegionModel = getModelForClass(Region);

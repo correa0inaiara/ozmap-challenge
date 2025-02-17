@@ -7,12 +7,12 @@ import * as bodyParser from 'body-parser';
 const PORT = 3003;
 // const HOST = '127.0.0.1';
 const server = app();
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const database = init
 main()
 
 export default async function main() {
   
-  // console.log(server)
   server.use(bodyParser.json())
   server.use('/users', userRouter);
   server.use('/regions', regionRouter);
