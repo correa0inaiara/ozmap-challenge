@@ -1,35 +1,22 @@
-import { isValid } from "../utils"
+import { mongoose } from "@typegoose/typegoose"
+import { isObjectID, isValid } from "../utils"
 
-export const isUserValid = function(this, address, coordinates) {
-  console.log("this ", this)
-  console.log("address ", address)
-  console.log("coordinates ", coordinates)
+export const isUserValid = function(this: mongoose.Document, address: string, location: mongoose.Types.ObjectId | [number, number]) {
   let message: string = ""
-  
+
+  if (isValid(location) && !isObjectID(location)) {
+    message = "Location is invalid"
+    this.invalidate('location', message, location)
+  }
+
   if (isValid(address) && typeof address != 'string') {
     message = 'Your address needs to be a string'
     this.invalidate('address', message, address)
   }
 
-  if (isValid(coordinates) && !Array.isArray(coordinates)) {
-    message = 'Your coordinates needs to be an array of type Coordinates: [number, number]'
-    this.invalidate('coordinates', message, coordinates)
-  }
-
-  if (isValid(coordinates) && Array.isArray(coordinates) && coordinates.length != 2) {
-    message = 'Your coordinates needs to be an array of type Coordinates: [number, number]'
-    this.invalidate('coordinates', message, coordinates)
-  }
-
-  if (isValid(coordinates) && Array.isArray(coordinates) 
-    && coordinates.length == 2 && (typeof coordinates[0] != 'number' || typeof coordinates[1] != 'number')) {
-    message = 'Your coordinates needs to be an array of type Coordinates: [number, number]'
-    this.invalidate('coordinates', message, coordinates)
-  }
-
-  if ((!isValid(address) && !isValid(coordinates)) || (isValid(address) && isValid(coordinates))) {
-    message = 'You need to provide either address or coordinates'
+  if ((!isValid(address) && !isObjectID(location)) || (isValid(address) && isObjectID(location))) {
+    message = 'You need to provide either address or location'
     this.invalidate('address', message, address)
-    this.invalidate('coordinates', message, coordinates)
+    this.invalidate('location', message, location)
   }
 }

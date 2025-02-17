@@ -2,17 +2,17 @@ import 'reflect-metadata';
 
 import * as mongoose from 'mongoose';
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
-import { pre, getModelForClass, prop, Ref, modelOptions } from '@typegoose/typegoose';
-import { Region } from './regionModels';
+import { pre, getModelForClass, prop, modelOptions } from '@typegoose/typegoose';
 
 import ObjectId = mongoose.Types.ObjectId;
 import { isUserValid } from '../validations/userValidations';
+import { UserLocation } from './userLocationModel';
 
 
 @pre<User>('validate', async function (next) {
-  const {address, coordinates} = this
+  const {address, location} = this
 
-  isUserValid.call(this, address, coordinates)
+  isUserValid.call(this, address, location)
 
   next()
 })
@@ -33,11 +33,8 @@ export class User extends Base {
   @prop({ type: () => [String] })
   public address: string;
 
-  @prop({ type: () => [Number] })
-  public coordinates: mongoose.Types.Array<number>;
-
-  @prop({ required: true, default: [], ref: () => Region, type: () => String })
-  public regions: Ref<Region>[];
+  @prop({ ref: () => UserLocation, type: () => mongoose.Types.ObjectId })
+  public location: UserLocation
 }
 
 export const UserModel = getModelForClass(User);

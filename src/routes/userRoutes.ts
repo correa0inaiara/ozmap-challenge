@@ -1,7 +1,9 @@
 import * as server from 'express';
-import { User, UserModel } from '../models/userModels';
+import { UserModel } from '../models/userModels';
 import { STATUS } from '../enums';
-import { isValid } from '../utils';
+import { isObjectID, isValid } from '../utils';
+import { UserLocationModel } from '../models/userLocationModel';
+import * as mongoose from 'mongoose';
 
 export const userRouter = server.Router();
 
@@ -44,13 +46,21 @@ userRouter.get('/:id', async (req, res) => {
 
 userRouter.post('/', async (req, res) => {
   const params = req.body;
-  console.log('params', params)
+
+  if (!params.location) {
+    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the location'})
+  }
+
+  const locationParams = params.location
 
   try {
+    const location = await UserLocationModel.create(locationParams)
+    params.location = location._id
     const user = await UserModel.create(params)
     
+    console.log('create location object', location)
     console.log('create user object', user)
-    return res.status(201).json(user)
+    return res.status(STATUS.CREATED).json(user)
   } catch (error) {
     console.log('error', error)
     return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
@@ -60,48 +70,57 @@ userRouter.post('/', async (req, res) => {
 
 userRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const params = req.body as User;
+  const params = req.body;
   params._id = id
 
   try {
-    await UserModel.validate(params)
     const user = await UserModel.findOne({ _id: id });
-    user.id = params._id
+    user._id = params._id
 
     if (!user) {
       return res.status(STATUS.DEFAULT_ERROR).json({ message: 'User not found' });
     }
+
+    if (!user.location && !params.location) {
+      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide a location'})
+    }
+
+    if (!(params.location instanceof mongoose.Types.ObjectId) && !params.location.coordinates) {
+      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
+    }
+
+    if (params.location.coordinates) {
+      const locationParams = params.location
+      const location = await UserLocationModel.create(locationParams)
+      params.location = location._id
+    }
+
+    if (isObjectID(params.location)) {
+      user.location = params.location
+      user.address = undefined
+    }
       
-    if (isValid(params)) {
+    if (isValid(params.name)) {
       user.name = params.name
     }
 
-    if (isValid(params)) {
+    if (isValid(params.email)) {
       user.email = params.email
     }
 
-    if (isValid(params)) {
+    if (isValid(params.address)) {
       user.address = params.address
-    }
-
-    if (isValid(params)) {
-      user.coordinates = params.coordinates
-    }
-
-    if (isValid(params)) {
-      user.regions = params.regions
+      user.location = undefined
     }
 
     await user.validate()
-    const opts = { runValidators: true }
-    await UserModel.findByIdAndUpdate(user, opts);
-    res.status(STATUS.OK).json(user)
+    await user.save();
+    res.status(STATUS.UPDATED).json(user)
   } catch (err) {
     return res.status(STATUS.BAD_REQUEST).json({error: err?.errors})
   }
 
 });
-
 
 userRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;
@@ -109,8 +128,8 @@ userRouter.delete('/:id', async (req, res) => {
   try {
     const user = await UserModel.deleteOne({ _id: id }).lean()
 
-    if (!user) {
-      return res.status(STATUS.NOT_FOUND).json({ message: "Usuário não encontrado" });
+    if (!user || user?.deletedCount == 0) {
+      return res.status(STATUS.NOT_FOUND).json({ message: "User not found" });
     }
     
     return res.status(STATUS.OK).json(user);

@@ -1,6 +1,9 @@
 import * as server from 'express';
-import { Region, RegionModel } from '../models/regionModels';
+import { RegionModel } from '../models/regionModels';
 import { STATUS } from '../enums';
+import { RegionLocationModel } from '../models/regionLocationModel';
+import { isObjectID, isValid } from '../utils';
+import * as mongoose from 'mongoose';
 
 export const regionRouter = server.Router();
 
@@ -27,49 +30,104 @@ regionRouter.get('/', async (req, res) => {
 regionRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
 
-  const user = await RegionModel.findOne({ _id: id }).lean();
+  try {
+    const region = await RegionModel.findOne({ _id: id }).lean();
 
-  if (!user) {
-    res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
+    if (!region) {
+      return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
+    }
+
+    return res.status(STATUS.OK).json(region);
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: error }); 
   }
-
-  return user;
 });
 
 regionRouter.post('/', async (req, res) => {
   const params = req.body;
-  console.log('params', params)
+  
+  if (!params.location) {
+    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the location'})
+  }
+
+  const locationParams = params.location
 
   try {
-    const region:Region = await RegionModel.create({ ...params })
+    const location = await RegionLocationModel.create(locationParams)
+    params.location = location._id
+    const region = await RegionModel.create(params)
+
+    console.log('create location object', location)
     console.log('create region object', region)
-    return res.sendStatus(201)
+    return res.status(STATUS.CREATED).json(region)
   } catch (error) {
     console.log('error', error)
-    res.status(STATUS.BAD_REQUEST).json({error: error._message})
+    return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
   }
 
 });
 
 regionRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
+  const params = req.body
+  params._id = id
 
-  const region = await RegionModel.findOne({ _id: id }).lean();
+  try {
+    const region = await RegionModel.findOne({ _id: id });
+    region._id = params._id
 
-  if (!region) {
-    res.status(STATUS.DEFAULT_ERROR).json({ message: 'Region not found' });
+    if (!region) {
+      return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
+    }
+
+    if (!region.location && !params.location) {
+      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide a location'})
+    }
+
+    if (!(params.location instanceof mongoose.Types.ObjectId) && !params.location.coordinates) {
+      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
+    }
+
+    if (params.location.coordinates) {
+      const locationParams = params.location
+      const location = await RegionLocationModel.create(locationParams)
+      params.location = location._id
+    }
+
+    if (isObjectID(params.location)) {
+      region.location = params.location
+    }
+
+    if (isValid(params.name)) {
+      region.name = params.name
+    }
+
+    if (isObjectID(params.user)) {
+      region.user = params.user
+    }
+
+    await region.validate()
+    await region.save();
+    return res.status(STATUS.UPDATED).json(region);
+  } catch (err) {
+    return res.status(STATUS.BAD_REQUEST).json({error: err?.errors})
   }
 
-  await RegionModel.findByIdAndUpdate(region);
-
-  return res.sendStatus(201);
 });
 
 
 regionRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
-  await RegionModel.deleteOne({ _id: id }).lean()
+  try {
+      const region = await RegionModel.deleteOne({ _id: id }).lean()
 
-  return res.sendStatus(STATUS.OK)
+      if (!region || region?.deletedCount == 0) {
+        return res.status(STATUS.NOT_FOUND).json({ message: "Region not found" });
+      }
+      
+      return res.status(STATUS.OK).json(region);
+    } catch (error) {
+      return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: error }); 
+    }
 })
