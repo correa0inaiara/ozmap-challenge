@@ -1,7 +1,7 @@
 import { mongoose } from "@typegoose/typegoose";
 import { isValid } from "../utils";
 
-export const isRegionLocationValid = function(this: mongoose.Document, coordinates: [[[number, number], [number, number], [number, number], [number, number], ...[number, number][]]]) {
+export const isRegionLocationValid = function(this: mongoose.Document, coordinates: [[[number, number]]]) {
 
   let message: string = ""
 

@@ -1,7 +1,8 @@
 import { mongoose } from "@typegoose/typegoose"
 import { isObjectID, isValid } from "../utils"
 
-export const isUserValid = function(this: mongoose.Document, address: string, location: mongoose.Types.ObjectId | [number, number]) {
+export const isUserValid = function(this: mongoose.Document, address: string, location: mongoose.Types.ObjectId) {
+  
   let message: string = ""
 
   if (isValid(location) && !isObjectID(location)) {

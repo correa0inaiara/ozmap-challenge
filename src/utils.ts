@@ -13,3 +13,20 @@ export const isObjectID = function (param) {
   }
   return false
 }
+
+export const parseBoolean = function (param) {
+  let paramBool = param
+  try {
+    if (typeof param == 'string') {
+      paramBool = param.toLowerCase()
+      paramBool = JSON.parse(paramBool)
+    }
+    if (typeof paramBool == 'boolean') {
+      return paramBool
+    } else {
+      throw "Expand query parameter needs to be true ou false"
+    }
+  } catch (err) {
+    throw "Expand query parameter needs to be true ou false. " + err
+  }
+}

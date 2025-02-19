@@ -33,8 +33,8 @@ export class User extends Base {
   @prop({ type: () => [String] })
   public address: string;
 
-  @prop({ ref: () => UserLocation, type: () => mongoose.Types.ObjectId })
-  public location: UserLocation
+  @prop({ type: () => UserLocation })
+  public location: mongoose.Types.ObjectId
 }
 
 export const UserModel = getModelForClass(User);

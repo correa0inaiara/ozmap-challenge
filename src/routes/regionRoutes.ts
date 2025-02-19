@@ -1,37 +1,68 @@
 import * as server from 'express';
 import { RegionModel } from '../models/regionModels';
 import { STATUS } from '../enums';
-import { RegionLocationModel } from '../models/regionLocationModel';
-import { isObjectID, isValid } from '../utils';
-import * as mongoose from 'mongoose';
+import { RegionLocation } from '../models/regionLocationModel';
+import { isObjectID, parseBoolean } from '../utils';
 
 export const regionRouter = server.Router();
 
 regionRouter.get('/', async (req, res) => {
-  const { page, limit } = req.query;
-
+  const { page, limit, expand } = req.query;
   try {
-    const [regions, total] = await Promise.all([RegionModel.find().lean(), RegionModel.count()]);
 
-    return res.json({
-      rows: regions,
-      page,
-      limit,
-      total,
-    });
+    if (parseBoolean(expand)) {
+      const opts = {
+        path: 'user'
+      }
+      const [regions, total] = await Promise
+        .all([RegionModel
+        .find()
+        .populate(opts), 
+        RegionModel.count()]);
+
+        return res.json({
+          rows: regions,
+          page,
+          limit,
+          total,
+        });
+    } else {
+      const [regions, total] = await Promise
+        .all([RegionModel
+        .find(), 
+        RegionModel.count()]);
+        
+        return res.json({
+          rows: regions,
+          page,
+          limit,
+          total,
+        });
+    }
   } catch (error) {
-    console.log('error', error);
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json({
-      message: 'Error na chamada do servidor',
+      message: 'Error na chamada do servidor. ' + error,
     });
   }
 });
 
 regionRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
+  const { expand } = req.query;
+  let region
 
   try {
-    const region = await RegionModel.findOne({ _id: id }).lean();
+
+    if (parseBoolean(expand)) {
+      const opts = {
+        path: 'user'
+      }
+
+      region = await RegionModel.findOne({ _id: id }).populate(opts)
+
+    } else {
+      region = await RegionModel.findOne({ _id: id })
+    }
 
     if (!region) {
       return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
@@ -44,24 +75,24 @@ regionRouter.get('/:id', async (req, res) => {
 });
 
 regionRouter.post('/', async (req, res) => {
-  const params = req.body;
   
-  if (!params.location) {
-    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the location'})
-  }
-
-  const locationParams = params.location
-
   try {
-    const location = await RegionLocationModel.create(locationParams)
-    params.location = location._id
-    const region = await RegionModel.create(params)
+    const { name, user, location } = req.body;
+    
+    const new_location = new RegionLocation();
+    new_location.type = 'Polygon';
+    new_location.coordinates = location.coordinates;
 
-    console.log('create location object', location)
-    console.log('create region object', region)
-    return res.status(STATUS.CREATED).json(region)
+    const region = new RegionModel({
+      name,
+      user,
+      location: new_location
+    });
+
+    await region.save();
+
+    return res.status(STATUS.OK).json(region);
   } catch (error) {
-    console.log('error', error)
     return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
   }
 
@@ -69,46 +100,52 @@ regionRouter.post('/', async (req, res) => {
 
 regionRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const params = req.body
+  const params = req.body;
   params._id = id
 
+  if (!params) {
+    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to specify the parameters to update'})
+  }
+
   try {
+
     const region = await RegionModel.findOne({ _id: id });
+
     region._id = params._id
 
     if (!region) {
       return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
     }
 
-    if (!region.location && !params.location) {
-      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide a location'})
+    if (params.user && !isObjectID(params.user)) {
+      return res.status(STATUS.BAD_REQUEST).json({message: 'User needs to be an ObjectID'})
     }
 
-    if (!(params.location instanceof mongoose.Types.ObjectId) && !params.location.coordinates) {
+    if (params.location && !params.location.coordinates) {
       return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
     }
 
-    if (params.location.coordinates) {
-      const locationParams = params.location
-      const location = await RegionLocationModel.create(locationParams)
-      params.location = location._id
-    }
+    const name = params.name ? params.name : region.name
+    const user = params.user ? params.user : region.user
+    let location = region.location ? region.location : null
 
-    if (isObjectID(params.location)) {
-      region.location = params.location
+    if (params.location && params.location.coordinates) {
+      const new_location = new RegionLocation();
+      new_location.type = 'Polygon';
+      new_location.coordinates = params.location.coordinates;
+      location = new_location
     }
+    
+    const new_region = new RegionModel({
+      name,
+      user,
+      location: location
+    })
 
-    if (isValid(params.name)) {
-      region.name = params.name
-    }
-
-    if (isObjectID(params.user)) {
-      region.user = params.user
-    }
-
-    await region.validate()
-    await region.save();
-    return res.status(STATUS.UPDATED).json(region);
+    await new_region.validate()
+    await new_region.save();
+    return res.status(STATUS.UPDATED).json(new_region)
+     
   } catch (err) {
     return res.status(STATUS.BAD_REQUEST).json({error: err?.errors})
   }

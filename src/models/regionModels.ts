@@ -27,11 +27,11 @@ export class Region extends Base {
   @prop({ required: true })
   public name!: string;
 
-  @prop({ required: true, ref: () => User, type: () => mongoose.Types.ObjectId })
-  public user!: User;
+  @prop({ required: true, ref: () => User, type: () => User })
+  public user!: mongoose.Types.ObjectId;
 
-  @prop({ ref: () => RegionLocation, type: () => mongoose.Types.ObjectId })
-  public location: RegionLocation
+  @prop({ type: () => RegionLocation, index: '2dsphere' })
+  public location!: RegionLocation
 }
 
 export const RegionModel = getModelForClass(Region);
