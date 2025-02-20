@@ -6,7 +6,6 @@ import { regionRouter } from './routes/regionRoutes';
 import * as bodyParser from 'body-parser';
 import { regionLocationRouter } from './routes/regionLocationRoutes';
 
-const PORT = 3003;
 // const HOST = '127.0.0.1';
 const server = app();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -21,7 +20,7 @@ export default async function main() {
   server.use('/users', userRouter);
   server.use('/regions', regionRouter);
   server.use('/locations', regionLocationRouter);
-  server.listen(PORT, () => {
+  server.listen(process.env.PORT, () => {
     console.log('listining on port 3003');
   });
 }

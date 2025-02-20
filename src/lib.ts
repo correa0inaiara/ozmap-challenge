@@ -1,40 +1,53 @@
-import {Client} from "@googlemaps/google-maps-services-js";
+import axios, { AxiosResponse } from 'axios';
+import { UserLocation } from './models/userLocationModel';
 
-const env = {
-  GOOGLE_MAPS_API_KEY: 'AIzaSyDG_plt7BvOFJdO-WH-SlHSwdAJ8Vv42KU',
-};
+export const getCoordinatesFromAddress = async function (address: string) {
+  const params = encodeURIComponent(address)
+  const config = {
+    method: 'get',
+    url: process.env.GEOAPIFY_BASE_URL + '/search?text=' + params + '&apiKey=' + process.env.API_KEY,
+    headers: {}
+  }
+  
+  return await axios(config)
+  .then(async function (response: AxiosResponse) {
+    const { data } = response
+    const { features } = data
 
-const init = function () {
-  const client = new Client({});
+    const lat = features[0].properties.lat
+    const long = features[0].properties.lon
+    const coordinates = [long, lat]  
 
-  client
-    .elevation({
-      params: {
-        locations: [{ lat: 45, lng: -110 }],
-        key: env.GOOGLE_MAPS_API_KEY,
-      },
-      timeout: 1000, // milliseconds
-    })
-    .then((r) => {
-      console.log(r.data.results[0].elevation);
-    })
-    .catch((e) => {
-      console.log(e.response.data.error_message);
-    });
-}
-init()
-
-class GeoLib {
-  // public 
-  // public getAddressFromCoordinates(
-  //   coordinates: [number, number] | { lat: number; lng: number },
-  // ): Promise<string> {
-  //   return Promise.reject(new Error('Not implemented'));
-  // }
-
-  // public getCoordinatesFromAddress(address: string): Promise<{ lat: number; lng: number }> {
-  //   return Promise.reject(new Error('Not implemented'));
-  // }
+    return coordinates
+  })
+  .catch(async function (error) {
+    console.log("error", error)
+    return error
+  })
 }
 
-export default new GeoLib();
+export const getAddressFromCoordinates = async function (location: UserLocation) {
+  const long = location.coordinates[0]
+  const lat = location.coordinates[1]
+  const params = 'lat=' + lat + '&lon=' + long + '&format=json'
+
+  const config = {
+    method: 'get',
+    url: process.env.GEOAPIFY_BASE_URL + '/reverse?' + params + '&apiKey=' + process.env.API_KEY,
+    headers: {}
+  }
+  
+  return await axios(config)
+  .then(async function (response: AxiosResponse) {
+    const {data} = response
+    const {results} = data
+
+    const {address_line1, address_line2} = results[0]
+    const address = address_line1 + " " + address_line2
+    return address
+
+  })
+  .catch(async function (error) {
+    console.log("error", error)
+  })
+}

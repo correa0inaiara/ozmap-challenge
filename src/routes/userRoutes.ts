@@ -2,6 +2,7 @@ import * as server from 'express';
 import { UserModel } from '../models/userModels';
 import { STATUS } from '../enums';
 import { UserLocation } from '../models/userLocationModel';
+import { getAddressFromCoordinates, getCoordinatesFromAddress } from '../lib';
 
 export const userRouter = server.Router();
 
@@ -63,24 +64,27 @@ userRouter.post('/', async (req, res) => {
       const new_location = new UserLocation();
       new_location.type = 'Point';
       new_location.coordinates = location.coordinates;
-  
+
       user = new UserModel({
         name,
         email,
+        address: null,
         location: new_location
       });
+      await user.populate('location')
     }
 
     if (address) {
+
       user = new UserModel({
         name,
         email,
-        address
+        address,
+        location: null
       });
     }
 
     await user.save();
-
     return res.status(STATUS.OK).json(user);
 
   } catch (error) {
@@ -126,10 +130,12 @@ userRouter.put('/:id', async (req, res) => {
       new_location.type = 'Point';
       new_location.coordinates = params.location.coordinates;
 
+      const new_address = await getAddressFromCoordinates(params.location.coordinates)
+
       new_user = new UserModel({
         name,
         email,
-        address: null,
+        address: new_address,
         location: new_location
       })
 
@@ -138,11 +144,18 @@ userRouter.put('/:id', async (req, res) => {
     }
 
     if (params.address) {
+      const coordinates = await getCoordinatesFromAddress(params.address)
+      
+      const new_location = new UserLocation()
+      new_location.type = 'Point'
+      new_location.coordinates = coordinates
+
+
       new_user = new UserModel({
         name,
         email,
         address: params.address,
-        location: null
+        location: new_location
       })
 
       address = new_user.address
