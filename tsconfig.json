@@ -5,7 +5,9 @@
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "types": ["reflect-metadata", "mocha"],
   "exclude": ["node_modules"]

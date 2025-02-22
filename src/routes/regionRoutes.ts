@@ -2,12 +2,18 @@ import * as server from 'express';
 import { RegionModel } from '../models/regionModels';
 import { STATUS } from '../enums';
 import { RegionLocation } from '../models/regionLocationModel';
-import { isObjectID, parseBoolean } from '../utils';
+import { isObjectID, isValid, parseBoolean } from '../utils';
 
 export const regionRouter = server.Router();
 
 regionRouter.get('/', async (req, res) => {
-  const { page, limit, expand } = req.query;
+  const { page, limit} = req.query;
+  let { expand } = req.query
+
+  if (!isValid(expand)) {
+    expand = 'false'
+  }
+
   try {
 
     if (parseBoolean(expand)) {
@@ -48,8 +54,12 @@ regionRouter.get('/', async (req, res) => {
 
 regionRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const { expand } = req.query;
+  let { expand } = req.query;
   let region
+
+  if (!isValid(expand)) {
+    expand = 'false'
+  }
 
   try {
 

@@ -2,7 +2,6 @@ import * as server from 'express';
 import { UserModel } from '../models/userModels';
 import { STATUS } from '../enums';
 import { UserLocation } from '../models/userLocationModel';
-import { getAddressFromCoordinates, getCoordinatesFromAddress } from '../lib';
 
 export const userRouter = server.Router();
 
@@ -10,10 +9,10 @@ userRouter.get('/', async (req, res) => {
   const { page, limit } = req.query;
 
   try {
-    const [users, total] = await Promise.all([UserModel.find().lean(), UserModel.count()]);
-
+    const [users, total] = await Promise.all([UserModel.find().populate('location'), UserModel.count()]);
+    
     return res.json({
-      rows: users,
+      rows: users.reverse(),
       page,
       limit,
       total,
@@ -29,7 +28,7 @@ userRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await UserModel.findOne({ _id: id })
+    const user = await UserModel.findOne({ _id: id }).populate('location')
 
     if (!user) {
       return res.status(STATUS.NOT_FOUND).json({ message: "User not found" });
@@ -130,12 +129,10 @@ userRouter.put('/:id', async (req, res) => {
       new_location.type = 'Point';
       new_location.coordinates = params.location.coordinates;
 
-      const new_address = await getAddressFromCoordinates(params.location.coordinates)
-
       new_user = new UserModel({
         name,
         email,
-        address: new_address,
+        address: null,
         location: new_location
       })
 
@@ -144,18 +141,11 @@ userRouter.put('/:id', async (req, res) => {
     }
 
     if (params.address) {
-      const coordinates = await getCoordinatesFromAddress(params.address)
-      
-      const new_location = new UserLocation()
-      new_location.type = 'Point'
-      new_location.coordinates = coordinates
-
-
       new_user = new UserModel({
         name,
         email,
         address: params.address,
-        location: new_location
+        location: null
       })
 
       address = new_user.address

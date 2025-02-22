@@ -14,6 +14,10 @@ export const getCoordinatesFromAddress = async function (address: string) {
     const { data } = response
     const { features } = data
 
+    if (features.length == 0) {
+      throw 'Error: Invalid address'
+    }
+
     const lat = features[0].properties.lat
     const long = features[0].properties.lon
     const coordinates = [long, lat]  

@@ -66,6 +66,8 @@ import { isValid } from '../utils';
   this.address = new_user.address
   this.location = new_user.location
 
+  await this.populate('location')
+
   next()
 })
 
