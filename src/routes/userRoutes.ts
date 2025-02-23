@@ -6,13 +6,43 @@ import { log } from '../logs';
 
 export const userRouter = server.Router();
 
+// /**
+//  * @swagger
+//  * definitions:
+//  *   User:
+//  *     properties:
+//  *       name:
+//  *         type: string
+//  *       email:
+//  *         type: string
+//  *       address:
+//  *         type: integer
+//  *       location:
+//  *         type: string
+//  */
+
+// /**
+//  * @swagger
+//  * /api/users:
+//  *   get:
+//  *     tags:
+//  *       - Users
+//  *     description: Returns all users
+//  *     produces:
+//  *       - application/json
+//  *     responses:
+//  *       200:
+//  *         description: An array of users
+//  *         schema:
+//  *           $ref: '#/definitions/User'
+//  */
 userRouter.get('/', async (req, res) => {
   const { page, limit } = req.query;
 
   try {
     const [users, total] = await Promise.all([UserModel.find().populate('location'), UserModel.count()]);
     
-    return res.json({
+    return res.status(STATUS.OK).json({
       rows: users.reverse(),
       page,
       limit,
@@ -95,7 +125,7 @@ userRouter.post('/', async (req, res) => {
 
   } catch (error) {
     log.error({api: error})
-    return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({error: error?.errors})
   }
 
 });
@@ -113,7 +143,6 @@ userRouter.put('/:id', async (req, res) => {
   try {
 
     const user = await UserModel.findOne({ _id: id });
-    user._id = params._id
 
     if (!user) {
       log.error({api: 'User not found'})
@@ -129,6 +158,8 @@ userRouter.put('/:id', async (req, res) => {
       log.error({api: 'You need to provide the coordinates of location'})
       return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
     }
+
+    user._id = params._id
 
     let new_user
     const name = params.name ? params.name : user.name
@@ -177,7 +208,7 @@ userRouter.put('/:id', async (req, res) => {
     
   } catch (err) {
     log.error({api: err})
-    return res.status(STATUS.BAD_REQUEST).json({error: err.errors ? err.errors : err})
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({error: err.errors ? err.errors : err})
   }
 
 });

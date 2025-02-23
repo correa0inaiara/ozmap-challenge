@@ -8,14 +8,21 @@ import * as path from 'path'
 import { engine } from 'express-handlebars';
 import { HomeController } from './controllers/home';
 import { log } from './logs';
+import * as swaggerUi from 'swagger-ui-express';
+import * as fs from 'fs'
+import * as YAML from 'yaml'
+// // import {i18next} from './i18n';
 
-log.info('app start up')
+const file  = fs.readFileSync('./src/swagger/swagger.yaml', 'utf8')
+const swaggerDocument = YAML.parse(file)
+
 // const HOST = '127.0.0.1';
 const server = app();
 const base_path = process.env.BASE_API_PATH
+// log.info(i18next.t('key'))
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const database = initDB
-
 main()
 
 export default async function main() {
@@ -25,6 +32,9 @@ export default async function main() {
   server.set('view engine', '.hbs');
   server.set('views', path.join(__dirname, 'views'));
   server.get('/', HomeController)
+
+  // swagger config
+  server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // server config
   server.use(bodyParser.json())

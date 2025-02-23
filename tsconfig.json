@@ -7,7 +7,9 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true
   },
   "types": ["reflect-metadata", "mocha"],
   "exclude": ["node_modules"]

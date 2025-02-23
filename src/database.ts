@@ -5,7 +5,7 @@ const init = async function () {
   log.info({database: 'initializing database'});
   try {
     await mongoose
-      .connect(process.env.MONGO_URI)
+      .connect(process.env.MONGO_URI || '')
       .then(() => log.info({database: 'database connected'}))
       .catch((err) => log.error({database: err}));
   } catch (err) {

@@ -47,10 +47,9 @@ regionRouter.get('/', async (req, res) => {
         });
     }
   } catch (error) {
+    
     log.error({api: error})
-    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({
-      message: 'Error na chamada do servidor. ' + error,
-    });
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({message: error});
   }
 });
 
@@ -78,7 +77,7 @@ regionRouter.get('/:id', async (req, res) => {
 
     if (!region) {
       log.error({api: 'Region not found'})
-      return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
+      return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
     }
 
     return res.status(STATUS.OK).json(region);
@@ -92,6 +91,11 @@ regionRouter.post('/', async (req, res) => {
   
   try {
     const { name, user, location } = req.body;
+
+    if (!location || !location.coordinates) {
+      log.error({api: 'Location and coordinates are required'})
+      return res.status(STATUS.BAD_REQUEST).json({message: 'Location and coordinates are required'});
+    }
     
     const new_location = new RegionLocation();
     new_location.type = 'Polygon';
@@ -108,7 +112,7 @@ regionRouter.post('/', async (req, res) => {
     return res.status(STATUS.OK).json(region);
   } catch (error) {
     log.error({api: error})
-    return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({error: error?.errors})
   }
 
 });
@@ -125,9 +129,7 @@ regionRouter.put('/:id', async (req, res) => {
 
   try {
 
-    const region = await RegionModel.findOne({ _id: id });
-
-    region._id = params._id
+    const region = await RegionModel.findOne({ _id: id })
 
     if (!region) {
       log.error({api: 'Region not found'})
@@ -143,6 +145,8 @@ regionRouter.put('/:id', async (req, res) => {
       log.error({api: 'You need to provide the coordinates of location'})
       return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
     }
+
+    region._id = params._id
 
     const name = params.name ? params.name : region.name
     const user = params.user ? params.user : region.user
@@ -167,7 +171,7 @@ regionRouter.put('/:id', async (req, res) => {
      
   } catch (err) {
     log.error({api: err})
-    return res.status(STATUS.BAD_REQUEST).json({error: err?.errors})
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json({error: err?.errors})
   }
 
 });

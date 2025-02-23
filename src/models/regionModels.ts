@@ -30,7 +30,7 @@ export class Region extends Base {
   @prop({ required: true, ref: () => User, type: () => User })
   public user!: mongoose.Types.ObjectId;
 
-  @prop({ type: () => RegionLocation, index: '2dsphere' })
+  @prop({ required: true, type: () => RegionLocation, index: '2dsphere' })
   public location!: RegionLocation
 }
 

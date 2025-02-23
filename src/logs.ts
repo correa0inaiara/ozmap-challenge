@@ -10,6 +10,10 @@ export const log = bunyan.createLogger({
     {
       level: 'info',
       path: './app.log'
+    },
+    {
+      level: 'error',
+      path: './error.log'
     }
   ]
 })
