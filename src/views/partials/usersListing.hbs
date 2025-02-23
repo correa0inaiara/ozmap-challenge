@@ -1,4 +1,4 @@
-<h2>Users Listing</h2>
+<h2>{{userListing.title}}</h2>
 
 <div id="alertUsersListing"></div>
 
@@ -6,10 +6,10 @@
   <table id="usersTable" class="table align-middle">
     <thead>
       <tr>
-        <th rowspan="1" scope="col">#</th>
-        <th rowspan="1" scope="col">Name / Email</th>
-        <th rowspan="1" colspan="3" scope="col">Address</th>
-        <th rowspan="1" scope="col">Longitude / Latitude</th>
+        <th rowspan="1" scope="col">{{tableHeader.index}}</th>
+        <th rowspan="1" scope="col">{{tableHeader.nameEmail}}</th>
+        <th rowspan="1" colspan="3" scope="col">{{tableHeader.address}}</th>
+        <th rowspan="1" scope="col">{{tableHeader.longLat}}</th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
 <nav id="usersNav" class="mt-3" aria-label="Pagination for users listing">
   <ul class="pagination pagination-sm justify-content-center">
     <li class="page-item disabled">
-      <a onclick="getCurrentPage('prev')" class="page-link" href="#">Previous</a>
+      <a onclick="getCurrentPage('prev')" class="page-link" href="#">{{nav.prev}}</a>
     </li>
     <li class="page-item active" aria-current="page">
       <a onclick="getCurrentPage(1)" class="page-link" href="#">1</a>

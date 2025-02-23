@@ -11,7 +11,9 @@ import { log } from './logs';
 import * as swaggerUi from 'swagger-ui-express';
 import * as fs from 'fs'
 import * as YAML from 'yaml'
-// // import {i18next} from './i18n';
+import i18next from './i18n';
+// import * as i18next from 'i18next'
+// import middleware from 'i18next-http-middleware'
 
 const file  = fs.readFileSync('./src/swagger/swagger.yaml', 'utf8')
 const swaggerDocument = YAML.parse(file)
@@ -19,13 +21,18 @@ const swaggerDocument = YAML.parse(file)
 // const HOST = '127.0.0.1';
 const server = app();
 const base_path = process.env.BASE_API_PATH
-// log.info(i18next.t('key'))
+log.info({server: i18next.t('serverInit')})
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const database = initDB
 main()
 
 export default async function main() {
+
+  // i18n config
+  // i18next.use(middleware.LanguageDetector).init({
+  //   preload: ['en', 'pt']
+  // })
 
   // view engine config
   server.engine('.hbs', engine({ extname: '.hbs' }));
@@ -45,6 +52,6 @@ export default async function main() {
   server.use(app.static("public"));
 
   server.listen(process.env.PORT, () => {
-    log.info({server: 'listining on http://localhost:' + process.env.PORT})
+    log.info({server: i18next.t('serverHost')})
   });
 }

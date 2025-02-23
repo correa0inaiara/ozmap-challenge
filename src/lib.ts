@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { UserLocation } from './models/userLocationModel';
 import { log } from './logs';
+import i18next from './i18n';
 
 export const getCoordinatesFromAddress = async function (address: string) {
   const params = encodeURIComponent(address)
@@ -16,8 +17,9 @@ export const getCoordinatesFromAddress = async function (address: string) {
     const { features } = data
 
     if (features.length == 0) {
-      log.error({lib: 'Invalid address'})
-      throw 'Invalid address'
+      const message = i18next.t('libAddressValidation')
+      log.error({lib: message})
+      throw message
     }
 
     const lat = features[0].properties.lat

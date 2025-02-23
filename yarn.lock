@@ -1616,6 +1616,11 @@ i18next-http-backend@^3.0.2:
   dependencies:
     cross-fetch "4.0.0"
 
+i18next-http-middleware@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.npmjs.org/i18next-http-middleware/-/i18next-http-middleware-3.7.1.tgz"
+  integrity sha512-nVTSGB1P4Gad5PFQYf3xVUOzJ4tVSQYD8Rs0luyWkjEMwqdqAcZ9CqIzqYwVLgB5/BKr1COI0oAei5dlYzmGbg==
+
 i18next@^24.2.2:
   version "24.2.2"
   resolved "https://registry.npmjs.org/i18next/-/i18next-24.2.2.tgz"

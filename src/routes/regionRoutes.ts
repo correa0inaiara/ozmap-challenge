@@ -4,6 +4,7 @@ import { STATUS } from '../enums';
 import { RegionLocation } from '../models/regionLocationModel';
 import { isObjectID, isValid, parseBoolean } from '../utils';
 import { log } from '../logs';
+import i18next from '../i18n';
 
 export const regionRouter = server.Router();
 
@@ -76,8 +77,9 @@ regionRouter.get('/:id', async (req, res) => {
     }
 
     if (!region) {
-      log.error({api: 'Region not found'})
-      return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
+      const message = i18next.t('apiRegionNotFound')
+      log.error({api: message})
+      return res.status(STATUS.NOT_FOUND).json({ message });
     }
 
     return res.status(STATUS.OK).json(region);
@@ -93,8 +95,9 @@ regionRouter.post('/', async (req, res) => {
     const { name, user, location } = req.body;
 
     if (!location || !location.coordinates) {
-      log.error({api: 'Location and coordinates are required'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'Location and coordinates are required'});
+      const message = i18next.t('apiRegionLocationValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message});
     }
     
     const new_location = new RegionLocation();
@@ -123,8 +126,9 @@ regionRouter.put('/:id', async (req, res) => {
   params._id = id
 
   if (!params) {
-    log.error({api: 'You need to specify the parameters to update'})
-    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to specify the parameters to update'})
+    const message = i18next.t('apiRegionUpdateParametersMissing')
+    log.error({api: message})
+    return res.status(STATUS.BAD_REQUEST).json({message})
   }
 
   try {
@@ -132,18 +136,21 @@ regionRouter.put('/:id', async (req, res) => {
     const region = await RegionModel.findOne({ _id: id })
 
     if (!region) {
-      log.error({api: 'Region not found'})
-      return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
+      const message = i18next.t('apiRegionNotFound')
+      log.error({api: message})
+      return res.status(STATUS.NOT_FOUND).json({ message });
     }
 
     if (params.user && !isObjectID(params.user)) {
-      log.error({api: 'User needs to be an ObjectID'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'User needs to be an ObjectID'})
+      const message = i18next.t('apiRegionUserValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message})
     }
 
     if (params.location && !params.location.coordinates) {
-      log.error({api: 'You need to provide the coordinates of location'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
+      const message = i18next.t('apiRegionLocationValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message})
     }
 
     region._id = params._id
@@ -183,8 +190,9 @@ regionRouter.delete('/:id', async (req, res) => {
       const region = await RegionModel.deleteOne({ _id: id }).lean()
 
       if (!region || region?.deletedCount == 0) {
-        log.error({api: "Region not found"})
-        return res.status(STATUS.NOT_FOUND).json({ message: "Region not found" });
+        const message = i18next.t('apiRegionNotFound')
+        log.error({api: message})
+        return res.status(STATUS.NOT_FOUND).json({ message });
       }
       
       return res.status(STATUS.OK).json(region);

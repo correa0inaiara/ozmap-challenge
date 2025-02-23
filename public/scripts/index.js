@@ -1,3 +1,17 @@
+// import i18next from 'i18next';
+// import en from './../locales/en'
+// import pt from './../locales/pt'
+
+// i18next.init({
+//   lng: 'pt',
+//     debug: false,
+//     load: 'languageOnly',
+//     resources: {
+//       en: en,
+//       pt: pt
+//     }
+// });
+
 (async () => {
     'use strict'
 

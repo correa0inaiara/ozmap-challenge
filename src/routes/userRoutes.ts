@@ -3,39 +3,10 @@ import { UserModel } from '../models/userModels';
 import { STATUS } from '../enums';
 import { UserLocation } from '../models/userLocationModel';
 import { log } from '../logs';
+import i18next from 'i18next';
 
 export const userRouter = server.Router();
 
-// /**
-//  * @swagger
-//  * definitions:
-//  *   User:
-//  *     properties:
-//  *       name:
-//  *         type: string
-//  *       email:
-//  *         type: string
-//  *       address:
-//  *         type: integer
-//  *       location:
-//  *         type: string
-//  */
-
-// /**
-//  * @swagger
-//  * /api/users:
-//  *   get:
-//  *     tags:
-//  *       - Users
-//  *     description: Returns all users
-//  *     produces:
-//  *       - application/json
-//  *     responses:
-//  *       200:
-//  *         description: An array of users
-//  *         schema:
-//  *           $ref: '#/definitions/User'
-//  */
 userRouter.get('/', async (req, res) => {
   const { page, limit } = req.query;
 
@@ -63,8 +34,9 @@ userRouter.get('/:id', async (req, res) => {
     const user = await UserModel.findOne({ _id: id }).populate('location')
 
     if (!user) {
-      log.error({api: 'User not found'})
-      return res.status(STATUS.NOT_FOUND).json({ message: "User not found" });
+      const message = i18next.t('apiUserNotFound')
+      log.error({api: message})
+      return res.status(STATUS.NOT_FOUND).json({ message });
     }
     
     res.status(STATUS.OK).json(user);
@@ -81,18 +53,21 @@ userRouter.post('/', async (req, res) => {
     const { name, email, address, location } = req.body;
 
     if (address && location) {
-      log.error({api: 'Only one option is acceptable: address or location.'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'Only one option is acceptable: address or location.'});
+      const message = i18next.t('apiUserSchemaValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message});
     }
 
     if (!address && !location) {
-      log.error({api: 'You need to provide either address or location'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide either address or location'});
+      const message = i18next.t('apiUserSchemaValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message});
     }
 
     if (location && !location.coordinates) {
-      log.error({api: 'You need to provide the coordinates of location'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'});
+      const message = i18next.t('apiUserLocationValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message});
     }
 
     let user
@@ -136,8 +111,9 @@ userRouter.put('/:id', async (req, res) => {
   params._id = id
 
   if (!params) {
-    log.error({api: 'You need to specify the parameters to update'})
-    return res.status(STATUS.BAD_REQUEST).json({message: 'You need to specify the parameters to update'})
+    const message = i18next.t('apiUserUpdateParametersMissing')
+    log.error({api: message})
+    return res.status(STATUS.BAD_REQUEST).json({message})
   }
 
   try {
@@ -145,18 +121,21 @@ userRouter.put('/:id', async (req, res) => {
     const user = await UserModel.findOne({ _id: id });
 
     if (!user) {
-      log.error({api: 'User not found'})
-      return res.status(STATUS.NOT_FOUND).json({ message: 'User not found' });
+      const message = i18next.t('apiUserNotFound')
+      log.error({api: message})
+      return res.status(STATUS.NOT_FOUND).json({ message });
     }
 
     if (params.address && params.location) {
-      log.error({api: 'Only one option is acceptable: address or location.'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'Only one option is acceptable: address or location.'});
+      const message = i18next.t('apiUserSchemaValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message});
     }
 
     if (params.location && !params.location.coordinates) {
-      log.error({api: 'You need to provide the coordinates of location'})
-      return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
+      const message = i18next.t('apiUserLocationValidation')
+      log.error({api: message})
+      return res.status(STATUS.BAD_REQUEST).json({message})
     }
 
     user._id = params._id
@@ -220,7 +199,9 @@ userRouter.delete('/:id', async (req, res) => {
     const user = await UserModel.deleteOne({ _id: id }).lean()
 
     if (!user || user?.deletedCount == 0) {
-      return res.status(STATUS.NOT_FOUND).json({ message: "User not found" });
+      const message = i18next.t('apiUserNotFound')
+      log.error({api: message})
+      return res.status(STATUS.NOT_FOUND).json({ message });
     }
     
     return res.status(STATUS.OK).json(user);
