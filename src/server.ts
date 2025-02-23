@@ -1,64 +1,57 @@
 import * as app from 'express';
-import { UserModel } from './models';
+import initDB from './database';
+import { userRouter } from './routes/userRoutes';
+import { regionRouter } from './routes/regionRoutes';
+import * as bodyParser from 'body-parser';
+import { regionLocationRouter } from './routes/regionLocationRoutes';
+import * as path from 'path'
+import { engine } from 'express-handlebars';
+import { HomeController } from './controllers/home';
+import { log } from './logs';
+import * as swaggerUi from 'swagger-ui-express';
+import * as fs from 'fs'
+import * as YAML from 'yaml'
+import i18next from './i18n';
+// import * as i18next from 'i18next'
+// import middleware from 'i18next-http-middleware'
 
+const file  = fs.readFileSync('./src/swagger/swagger.yaml', 'utf8')
+const swaggerDocument = YAML.parse(file)
+
+// const HOST = '127.0.0.1';
 const server = app();
-const router = app.Router();
+const base_path = process.env.BASE_API_PATH
+log.info({server: i18next.t('serverInit')})
 
-const STATUS = {
-  OK: 200,
-  CREATED: 201,
-  UPDATED: 201,
-  NOT_FOUND: 400,
-  BAD_REQUEST: 400,
-  INTERNAL_SERVER_ERROR: 500,
-  DEFAULT_ERROR: 418,
-};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const database = initDB
+main()
 
-router.get('/user', async (req, res) => {
-  const { page, limit } = req.query;
+export default async function main() {
 
-  const [users, total] = await Promise.all([
-    UserModel.find().lean(),
-    UserModel.count(),
-  ]);
+  // i18n config
+  // i18next.use(middleware.LanguageDetector).init({
+  //   preload: ['en', 'pt']
+  // })
 
-  return res.json({
-    rows: users,
-    page,
-    limit,
-    total,
+  // view engine config
+  server.engine('.hbs', engine({ extname: '.hbs' }));
+  server.set('view engine', '.hbs');
+  server.set('views', path.join(__dirname, 'views'));
+  server.get('/', HomeController)
+
+  // swagger config
+  server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+  // server config
+  server.use(bodyParser.json())
+  server.use(base_path + '/users', userRouter);
+  server.use(base_path + '/regions', regionRouter);
+  server.use(base_path + '/search', regionLocationRouter);
+
+  server.use(app.static("public"));
+
+  server.listen(process.env.PORT, () => {
+    log.info({server: i18next.t('serverHost')})
   });
-});
-
-router.get('/users/:id', async (req, res) => {
-  const { id } = req.params;
-
-  const user = await UserModel.findOne({ _id: id }).lean();
-
-  if (!user) {
-    res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
-  }
-
-  return user;
-});
-
-router.put('/users/:id', async (req, res) => {
-  const { id } = req.params;
-  const { update } = req.body;
-
-  const user = await UserModel.findOne({ _id: id }).lean();
-
-  if (!user) {
-    res.status(STATUS.DEFAULT_ERROR).json({ message: 'Region not found' });
-  }
-
-  user.name = update.name;
-
-  await user.save();
-
-  return res.sendStatus(201);
-});
-
-server.use(router);
-
-export default server.listen(3003);
+}
