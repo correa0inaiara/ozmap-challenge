@@ -7,12 +7,15 @@ import { regionLocationRouter } from './routes/regionLocationRoutes';
 import * as path from 'path'
 import { engine } from 'express-handlebars';
 import { HomeController } from './controllers/home';
+import { log } from './logs';
 
+log.info('app start up')
 // const HOST = '127.0.0.1';
 const server = app();
 const base_path = process.env.BASE_API_PATH
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const database = initDB
+
 main()
 
 export default async function main() {
@@ -32,6 +35,6 @@ export default async function main() {
   server.use(app.static("public"));
 
   server.listen(process.env.PORT, () => {
-    console.log('listining on http://localhost:' + process.env.PORT);
+    log.info({server: 'listining on http://localhost:' + process.env.PORT})
   });
 }

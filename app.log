@@ -1,0 +1,184 @@
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19852,"level":30,"msg":"hi","time":"2025-02-23T00:09:35.810Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9580,"level":30,"msg":"hi","time":"2025-02-23T00:10:18.947Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4104,"level":30,"msg":"App Startup","time":"2025-02-23T00:11:54.815Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4332,"level":30,"msg":"App Start Up","time":"2025-02-23T00:12:06.562Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13204,"level":30,"msg":"App Start Up","time":"2025-02-23T00:12:22.239Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16440,"level":30,"msg":"App Start Up","time":"2025-02-23T00:12:41.677Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16440,"level":30,"msg":"","time":"2025-02-23T00:12:41.697Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1020,"level":30,"msg":"App Start Up","time":"2025-02-23T00:12:59.771Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1020,"level":30,"listinig":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:12:59.788Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":20732,"level":30,"msg":"App Start Up","time":"2025-02-23T00:13:14.319Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":20732,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:13:14.343Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18508,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:14:29.240Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18508,"level":30,"msg":"App Start Up","time":"2025-02-23T00:14:30.635Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18508,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:14:30.657Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2096,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:14:48.712Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2096,"level":30,"msg":"App Start Up","time":"2025-02-23T00:14:49.451Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2096,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:14:49.477Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":6016,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:15:22.183Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":6016,"level":30,"msg":"App Start Up","time":"2025-02-23T00:15:23.603Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":6016,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:15:23.629Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":6016,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:15:24.102Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13060,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:15:47.324Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13060,"level":30,"msg":"App Start Up","time":"2025-02-23T00:15:48.945Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13060,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:15:48.977Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13060,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:15:49.875Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17760,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:17:13.036Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17760,"level":30,"msg":"App Start Up","time":"2025-02-23T00:17:14.037Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17760,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:17:14.055Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9044,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:17:21.568Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9044,"level":30,"msg":"App Start Up","time":"2025-02-23T00:17:22.575Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9044,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:17:22.595Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9044,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:17:23.071Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17008,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:17:42.395Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17008,"level":30,"msg":"App Start Up","time":"2025-02-23T00:17:43.427Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17008,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:17:43.445Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17008,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:17:43.968Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":7036,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:17:58.251Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":7036,"level":30,"msg":"App Start Up","time":"2025-02-23T00:17:59.014Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":7036,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:17:59.029Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":7036,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:17:59.503Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4800,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:19:03.872Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4800,"level":30,"msg":"App Start Up","time":"2025-02-23T00:19:04.883Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4800,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:19:04.906Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":4800,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:19:06.768Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19464,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:19:58.307Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19464,"level":30,"msg":"App Start Up","time":"2025-02-23T00:19:59.312Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19464,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:19:59.416Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19464,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:20:00.075Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18140,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:20:08.686Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18140,"level":30,"msg":"app start up","time":"2025-02-23T00:20:10.562Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18140,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:20:10.590Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18140,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:20:11.205Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18140,"level":50,"lib":"Invalid address","msg":"","time":"2025-02-23T00:20:53.072Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":12356,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:22:44.626Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":12356,"level":30,"msg":"app start up","time":"2025-02-23T00:22:45.597Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":12356,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:22:45.618Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":12356,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:22:46.331Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16768,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:23:11.034Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16768,"level":30,"msg":"app start up","time":"2025-02-23T00:23:12.271Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16768,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:23:12.297Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":16768,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:23:12.770Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18004,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:23:36.018Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18004,"level":30,"msg":"app start up","time":"2025-02-23T00:23:37.370Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18004,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:23:37.389Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":18004,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:23:37.861Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21344,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:24:02.744Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21344,"level":30,"msg":"app start up","time":"2025-02-23T00:24:03.584Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21344,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:24:03.612Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21344,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:24:04.200Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11808,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:24:09.936Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11808,"level":30,"msg":"app start up","time":"2025-02-23T00:24:10.743Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11808,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:24:10.765Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11808,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:24:11.328Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":5944,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:24:22.335Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":5944,"level":30,"msg":"app start up","time":"2025-02-23T00:24:24.151Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":5944,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:24:24.253Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":5944,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:24:24.955Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21172,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:24:32.020Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21172,"level":30,"msg":"app start up","time":"2025-02-23T00:24:32.848Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21172,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:24:32.869Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21172,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:24:33.351Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":620,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:24:54.827Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":620,"level":30,"msg":"app start up","time":"2025-02-23T00:24:55.690Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":620,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:24:55.712Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":620,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:24:56.209Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19356,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:28:24.158Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19356,"level":30,"msg":"app start up","time":"2025-02-23T00:28:24.998Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19356,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:28:25.026Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19356,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:28:25.618Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15088,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:28:47.070Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15088,"level":30,"msg":"app start up","time":"2025-02-23T00:28:48.053Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15088,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:28:48.070Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15088,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:28:48.594Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19404,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:29:29.969Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19404,"level":30,"msg":"app start up","time":"2025-02-23T00:29:30.801Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19404,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:29:30.818Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19404,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:29:31.491Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1524,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:29:47.064Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1524,"level":30,"msg":"app start up","time":"2025-02-23T00:29:47.960Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1524,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:29:47.992Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":1524,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:29:48.568Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19308,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:29:55.794Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19308,"level":30,"msg":"app start up","time":"2025-02-23T00:29:56.765Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19308,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:29:56.784Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":19308,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:29:57.260Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14796,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:30:17.121Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14796,"level":30,"msg":"app start up","time":"2025-02-23T00:30:19.240Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14796,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:30:19.269Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14796,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:30:19.738Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2752,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:30:26.776Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2752,"level":30,"msg":"app start up","time":"2025-02-23T00:30:28.104Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2752,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:30:28.127Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":2752,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:30:28.632Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11696,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:32:34.149Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11696,"level":30,"msg":"app start up","time":"2025-02-23T00:32:35.143Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11696,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:32:35.169Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11696,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:32:36.134Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":10356,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:32:43.069Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":10356,"level":30,"msg":"app start up","time":"2025-02-23T00:32:44.251Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":10356,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:32:44.287Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":10356,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:32:44.772Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14132,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:33:23.642Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14132,"level":30,"msg":"app start up","time":"2025-02-23T00:33:25.409Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14132,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:33:25.429Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":14132,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:33:25.992Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11740,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:33:39.936Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11740,"level":30,"msg":"app start up","time":"2025-02-23T00:33:40.846Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11740,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:33:40.866Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11740,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:33:41.544Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11508,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:35:54.835Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11508,"level":30,"msg":"app start up","time":"2025-02-23T00:35:55.708Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11508,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:35:55.729Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11508,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:35:56.570Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9372,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:36:33.858Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9372,"level":30,"msg":"app start up","time":"2025-02-23T00:36:35.039Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9372,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:36:35.073Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":9372,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:36:35.624Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13612,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:36:41.984Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13612,"level":30,"msg":"app start up","time":"2025-02-23T00:36:43.563Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13612,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:36:43.584Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13612,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:36:44.143Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":8408,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:37:01.785Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":8408,"level":30,"msg":"app start up","time":"2025-02-23T00:37:02.658Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":8408,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:37:02.685Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":8408,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:37:03.354Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13396,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:37:49.977Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13396,"level":30,"msg":"app start up","time":"2025-02-23T00:37:51.339Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13396,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:37:51.412Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":13396,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:37:52.150Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17916,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:37:56.888Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17916,"level":30,"msg":"app start up","time":"2025-02-23T00:37:58.917Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17916,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:37:58.948Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15528,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:38:03.326Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15528,"level":30,"msg":"app start up","time":"2025-02-23T00:38:05.066Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15528,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:38:05.083Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15528,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:38:05.649Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:38:16.417Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"msg":"app start up","time":"2025-02-23T00:38:17.875Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:38:17.894Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:38:18.402Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21136,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:38:38.086Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21136,"level":30,"msg":"app start up","time":"2025-02-23T00:38:39.100Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21136,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:38:39.117Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21136,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:38:39.572Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11228,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:39:17.988Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11228,"level":30,"msg":"app start up","time":"2025-02-23T00:39:18.996Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11228,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:39:19.018Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11228,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:39:20.052Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11412,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:39:33.605Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11412,"level":30,"msg":"app start up","time":"2025-02-23T00:39:34.629Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11412,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:39:34.656Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":11412,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:39:35.241Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15956,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:39:48.008Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15956,"level":30,"msg":"app start up","time":"2025-02-23T00:39:49.012Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15956,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:39:49.031Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":15956,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:39:49.515Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:42:18.191Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"msg":"app start up","time":"2025-02-23T00:42:19.707Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:42:19.744Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":17328,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:42:21.324Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21408,"level":30,"database":"initializing database","msg":"","time":"2025-02-23T00:43:41.642Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21408,"level":30,"msg":"app start up","time":"2025-02-23T00:43:42.702Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21408,"level":30,"server":"listining on http://localhost:3003","msg":"","time":"2025-02-23T00:43:42.719Z","v":0}
+{"name":"app","hostname":"DESKTOP-K2IF0EU","pid":21408,"level":30,"database":"database connected","msg":"","time":"2025-02-23T00:43:43.496Z","v":0}

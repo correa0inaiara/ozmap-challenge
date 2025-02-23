@@ -9,6 +9,7 @@ import { isUserValid } from '../validations/userValidations';
 import { UserLocation } from './userLocationModel';
 import { getAddressFromCoordinates, getCoordinatesFromAddress } from '../lib';
 import { isValid } from '../utils';
+import { log } from '../logs';
 
 @pre<User>('validate', async function (next) {
   const {address, location} = this
@@ -38,6 +39,7 @@ import { isValid } from '../utils';
       })
 
     } catch (error) {
+      log.error({api: error})
       next(error)
     }
 
@@ -56,6 +58,7 @@ import { isValid } from '../utils';
       })
 
     } catch (error) {
+      log.error({api: error})
       next(error)
     }
 

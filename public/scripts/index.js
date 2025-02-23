@@ -111,6 +111,7 @@ function getFormData (form) {
   return data
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function processUserForm () {
   const form = document.forms['userForm']
   if (form.checkValidity()) {
@@ -332,6 +333,7 @@ function buildNavigation() {
   ul.append(next)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getCurrentPage(currentMark, recursive) {
   const pagination = MyNamespace.pagination
   const pages = document.getElementsByClassName('page-item')
@@ -386,18 +388,21 @@ async function handleGetUsersResponse (response, resetNav) {
   buildTable(arr)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function handleResponse (response) {
   const result = await getUsers()
   console.log("result", result)
   await handleGetUsersResponse(result, false)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function handleEdit (event) {
   console.log("handleEdit")
   event.preventDefault()
   event.stopPropagation()
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function handleDelete (event) {
   console.log("handleDelete")
   event.preventDefault()

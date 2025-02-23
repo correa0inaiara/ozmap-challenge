@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { UserLocation } from './models/userLocationModel';
+import { log } from './logs';
 
 export const getCoordinatesFromAddress = async function (address: string) {
   const params = encodeURIComponent(address)
@@ -15,7 +16,8 @@ export const getCoordinatesFromAddress = async function (address: string) {
     const { features } = data
 
     if (features.length == 0) {
-      throw 'Error: Invalid address'
+      log.error({lib: 'Invalid address'})
+      throw 'Invalid address'
     }
 
     const lat = features[0].properties.lat
@@ -25,7 +27,7 @@ export const getCoordinatesFromAddress = async function (address: string) {
     return coordinates
   })
   .catch(async function (error) {
-    console.log("error", error)
+    log.error({lib: error})
     return error
   })
 }
@@ -52,6 +54,6 @@ export const getAddressFromCoordinates = async function (location: UserLocation)
 
   })
   .catch(async function (error) {
-    console.log("error", error)
+    log.error({lib: error})
   })
 }

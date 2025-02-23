@@ -1,17 +1,16 @@
 import mongoose from 'mongoose';
+import { log } from './logs';
 
 const init = async function () {
-  console.log('initializing database');
+  log.info({database: 'initializing database'});
   try {
     await mongoose
       .connect(process.env.MONGO_URI)
-      .then(() => console.log('database connected'))
-      .catch((err) => console.log('error: ', err));
-    // return mongodb;
-  } catch (error) {
-    console.log('error', error);
+      .then(() => log.info({database: 'database connected'}))
+      .catch((err) => log.error({database: err}));
+  } catch (err) {
+    log.error({database: err});
   }
-  // mongodb.getClient();
 };
 
 export default init();

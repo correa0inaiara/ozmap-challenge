@@ -3,6 +3,7 @@ import { RegionModel } from '../models/regionModels';
 import { STATUS } from '../enums';
 import { RegionLocation } from '../models/regionLocationModel';
 import { isObjectID, isValid, parseBoolean } from '../utils';
+import { log } from '../logs';
 
 export const regionRouter = server.Router();
 
@@ -26,7 +27,7 @@ regionRouter.get('/', async (req, res) => {
         .populate(opts), 
         RegionModel.count()]);
 
-        return res.json({
+        return res.status(STATUS.OK).json({
           rows: regions,
           page,
           limit,
@@ -38,7 +39,7 @@ regionRouter.get('/', async (req, res) => {
         .find(), 
         RegionModel.count()]);
         
-        return res.json({
+        return res.status(STATUS.OK).json({
           rows: regions,
           page,
           limit,
@@ -46,6 +47,7 @@ regionRouter.get('/', async (req, res) => {
         });
     }
   } catch (error) {
+    log.error({api: error})
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json({
       message: 'Error na chamada do servidor. ' + error,
     });
@@ -75,11 +77,13 @@ regionRouter.get('/:id', async (req, res) => {
     }
 
     if (!region) {
+      log.error({api: 'Region not found'})
       return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: 'Region not found' });
     }
 
     return res.status(STATUS.OK).json(region);
   } catch (error) {
+    log.error({api: error})
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: error }); 
   }
 });
@@ -103,6 +107,7 @@ regionRouter.post('/', async (req, res) => {
 
     return res.status(STATUS.OK).json(region);
   } catch (error) {
+    log.error({api: error})
     return res.status(STATUS.BAD_REQUEST).json({error: error?.errors})
   }
 
@@ -114,6 +119,7 @@ regionRouter.put('/:id', async (req, res) => {
   params._id = id
 
   if (!params) {
+    log.error({api: 'You need to specify the parameters to update'})
     return res.status(STATUS.BAD_REQUEST).json({message: 'You need to specify the parameters to update'})
   }
 
@@ -124,14 +130,17 @@ regionRouter.put('/:id', async (req, res) => {
     region._id = params._id
 
     if (!region) {
+      log.error({api: 'Region not found'})
       return res.status(STATUS.NOT_FOUND).json({ message: 'Region not found' });
     }
 
     if (params.user && !isObjectID(params.user)) {
+      log.error({api: 'User needs to be an ObjectID'})
       return res.status(STATUS.BAD_REQUEST).json({message: 'User needs to be an ObjectID'})
     }
 
     if (params.location && !params.location.coordinates) {
+      log.error({api: 'You need to provide the coordinates of location'})
       return res.status(STATUS.BAD_REQUEST).json({message: 'You need to provide the coordinates of location'})
     }
 
@@ -157,11 +166,11 @@ regionRouter.put('/:id', async (req, res) => {
     return res.status(STATUS.UPDATED).json(new_region)
      
   } catch (err) {
+    log.error({api: err})
     return res.status(STATUS.BAD_REQUEST).json({error: err?.errors})
   }
 
 });
-
 
 regionRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;
@@ -170,11 +179,13 @@ regionRouter.delete('/:id', async (req, res) => {
       const region = await RegionModel.deleteOne({ _id: id }).lean()
 
       if (!region || region?.deletedCount == 0) {
+        log.error({api: "Region not found"})
         return res.status(STATUS.NOT_FOUND).json({ message: "Region not found" });
       }
       
       return res.status(STATUS.OK).json(region);
     } catch (error) {
+      log.error({api: error})
       return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ message: error }); 
     }
 })
